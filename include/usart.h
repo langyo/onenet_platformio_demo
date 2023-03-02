@@ -13,5 +13,4 @@ void Usart_SendString(USART_TypeDef *USARTx, unsigned char *str, unsigned short 
 
 void UsartPrintf(USART_TypeDef *USARTx, const char *str);
 
-#include "../lib/usart.cpp"
 #endif

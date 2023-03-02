@@ -8,6 +8,9 @@
 // 单片机头文件
 #include "stm32f1xx.h"
 
+// 系统时钟服务
+#include "sys_basic.h"
+
 // 网络协议层
 #include "onenet.h"
 
@@ -43,41 +46,35 @@ void Hardware_Init(void)
 
 void SysTick_Handler(void)
 {
-	/* USER CODE BEGIN SysTick_IRQn 0 */
-
-	/* USER CODE END SysTick_IRQn 0 */
 	HAL_IncTick();
-	/* USER CODE BEGIN SysTick_IRQn 1 */
-
-	/* USER CODE END SysTick_IRQn 1 */
 }
 
 int main()
 {
 
 	HAL_Init();
-
+	// SystemClock_Config();
 	__HAL_RCC_GPIOC_CLK_ENABLE();
 
 	GPIO_InitTypeDef gpiot;
 	gpiot.Mode = GPIO_MODE_OUTPUT_PP;
-	gpiot.Pin = GPIO_PIN_7 | GPIO_PIN_8;
+	gpiot.Pin = GPIO_PIN_8 | GPIO_PIN_7;
 	gpiot.Pull = GPIO_NOPULL;
 	gpiot.Speed = GPIO_SPEED_HIGH;
 	HAL_GPIO_Init(GPIOC, &gpiot);
 
-	HAL_GPIO_WritePin(GPIOC, GPIO_PIN_8, GPIO_PIN_RESET);
-
-	SysTick_Handler();
-
+	uint32_t cnt = 0;
 	while (1)
 	{
 		HAL_GPIO_WritePin(GPIOC, GPIO_PIN_8, GPIO_PIN_RESET);
-		HAL_Delay(1000);
+		// HAL_Delay(1000);
+		for (cnt = 0; cnt < 0x1FFF; cnt++)
+			;
+		HAL_GPIO_WritePin(GPIOC, GPIO_PIN_7, GPIO_PIN_RESET);
 		HAL_GPIO_WritePin(GPIOC, GPIO_PIN_8, GPIO_PIN_SET);
-		HAL_Delay(1000);
-
-		HAL_GPIO_WritePin(GPIOC, GPIO_PIN_7, GPIO_PIN_SET);
+		// HAL_Delay(1000);
+		for (cnt = 0; cnt < 0x1FFF; cnt++)
+			;
 	}
 
 	unsigned short timeCount = 0; // 发送间隔变量

@@ -49,5 +49,4 @@ void IIC_SendByte(unsigned char byte);
 
 unsigned char IIC_RecvByte(void);
 
-#include "../lib/i2c.cpp"
 #endif

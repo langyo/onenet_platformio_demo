@@ -5,5 +5,4 @@ void OneNet_SendData(void);
 
 void OneNet_RevPro(unsigned char *dataPtr);
 
-#include "../lib/onenet.cpp"
 #endif

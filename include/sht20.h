@@ -23,5 +23,4 @@ extern SHT20_INFO sht20_info;
 
 void SHT20_GetValue(void);
 
-#include "../lib/sht20.cpp"
 #endif

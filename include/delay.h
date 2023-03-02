@@ -9,5 +9,4 @@ void DelayXms(unsigned short ms);
 
 void DelayMs(unsigned short ms);
 
-#include "../lib/delay.cpp"
 #endif

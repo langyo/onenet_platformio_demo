@@ -18,5 +18,4 @@ void Beep_Init(void);
 
 void Beep_Set(bool status);
 
-#include "../lib/beep.cpp"
 #endif
